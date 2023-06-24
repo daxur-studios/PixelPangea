@@ -8,7 +8,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'the-isle-web';
+  title = 'PixelPangea';
 
   readonly formGroup: UserFormGroup = this.builder.group({
     name: [''],

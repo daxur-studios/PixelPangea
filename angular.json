@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "the-isle-web": {
+    "PixelPangea": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/the-isle-web",
+            "outputPath": "dist/PixelPangea",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -58,10 +58,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "the-isle-web:build:production"
+              "browserTarget": "PixelPangea:build:production"
             },
             "development": {
-              "browserTarget": "the-isle-web:build:development",
+              "browserTarget": "PixelPangea:build:development",
               "port": 4203
             }
           },
@@ -70,7 +70,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "the-isle-web:build"
+            "browserTarget": "PixelPangea:build"
           }
         },
         "test": {
