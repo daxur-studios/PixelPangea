@@ -5,12 +5,12 @@
     FIELD
     <br />
 
-    {{ key }}
+    {{ getType(key)?.label || key }}
 
     <br />
     <input
       *ngIf="getFormControl(key)"
-      [type]="getType(key)"
+      [type]="getType(key)?.type"
       [formControl]="getFormControl(key)!"
     /></div
 ></ng-container>

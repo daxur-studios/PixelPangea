@@ -1,3 +1,10 @@
-<div>The Isle Web</div>
+<mat-toolbar color="primary">
+  <div>Pixel Pangea</div>
+
+  <a routerLink="/main-menu">Main Menu</a>
+  <a routerLink="/level-editor">Level Editor</a>
+</mat-toolbar>
 
 <app-smart-form [smartForm]="smartForm"></app-smart-form>
+
+<router-outlet></router-outlet>

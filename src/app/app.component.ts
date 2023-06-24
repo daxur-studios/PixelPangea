@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SmartForm } from './utilities/smart-form';
+import { SmartForm } from './standalone-components/smart-form/smart-form';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -28,15 +28,26 @@ export class AppComponent {
   readonly smartForm = new SmartForm<UserFormGroup>({
     formGroup: this.formGroup,
     inputConfig: {
-      name: 'text',
-      email: 'email',
-      password: 'password',
-      tags: 'text',
+      name: {
+        label: 'Name',
+        type: 'text',
+      },
+      email: {
+        type: 'email',
+        label: 'Email',
+      },
+      password: {
+        type: 'password',
+        label: 'Password',
+      },
+      tags: {
+        type: 'text',
+      },
       address: {
-        street: 'text',
-        city: 'text',
-        state: 'text',
-        zip: 'text',
+        street: {
+          type: 'text',
+          label: 'Street',
+        },
       },
     },
   });

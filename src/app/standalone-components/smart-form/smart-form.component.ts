@@ -1,10 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormInputType,
-  InputConfig,
-  SmartForm,
-} from '../../utilities/smart-form';
+import { FormInputType, InputConfig, SmartForm } from './smart-form';
 import {
   FormArray,
   FormControl,

@@ -12,6 +12,9 @@ export class SmartForm<T extends FormGroup> implements ISmartForm {
     this.formGroup = options.formGroup;
   }
 }
+export interface ISmartForm {
+  formGroup: FormGroup;
+}
 
 export interface ISmartFormOptions<T extends FormGroup> {
   formGroup: T;
@@ -25,16 +28,17 @@ export interface ISmartFormOptions<T extends FormGroup> {
 
 export type InputConfig<T extends FormGroup> = {
   [K in keyof T['controls']]?: T['controls'][K] extends FormArray<infer U>
-    ? FormInputType
+    ? IInputOptions
     : T['controls'][K] extends FormControl<infer U>
-    ? FormInputType
+    ? IInputOptions
     : T['controls'][K] extends FormGroup<infer U>
     ? InputConfig<T['controls'][K]>
     : never;
 };
 
-export interface ISmartForm {
-  formGroup: FormGroup;
+export interface IInputOptions {
+  type: FormInputType;
+  label?: string;
 }
 
 export type FormInputType =
@@ -64,13 +68,22 @@ const test = new FormGroup({
 const smartForm = new SmartForm({
   formGroup: test,
   inputConfig: {
-    name: 'text',
-    email: 'email',
+    name: {
+      label: 'Name',
+      type: 'text',
+    },
+    email: {
+      type: 'email',
+    },
     address: {
-      street: 'text',
-      zip: 'number',
+      // street: 'text',
+      zip: {
+        type: 'number',
+      },
       tenant: {
-        name: 'text',
+        name: {
+          type: 'text',
+        },
       },
     },
   },
