@@ -23,7 +23,15 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@daxur-studios/engine",
+                "output": "./assets/daxur-engine"
+              }
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
@@ -82,7 +90,15 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@daxur-studios/engine",
+                "output": "./assets/daxur-engine"
+              }
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"

@@ -4,9 +4,9 @@
   "compilerOptions": {
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"],
-      "@daxur-studios/daxur-engine": [
-        "./node_modules/@daxur-studios/daxur-engine"
-      ]
+      "three": ["./node_modules/three"],
+      "@daxur-studios/engine": ["./node_modules/@daxur-studios/engine"],
+      "@standalone-components/*": ["src/app/standalone-components/*"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

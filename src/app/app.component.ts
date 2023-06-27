@@ -1,78 +1,18 @@
 import { Component } from '@angular/core';
 import { SmartForm } from './standalone-components/smart-form/smart-form';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { EngineService } from '@daxur-studios/engine';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  host: {
+    class: 'flex-page',
+  },
 })
 export class AppComponent {
   title = 'PixelPangea';
 
-  readonly formGroup: UserFormGroup = this.builder.group({
-    name: [''],
-    email: [''],
-    password: [''],
-
-    tags: this.builder.array(['x']),
-
-    address: this.builder.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: [''],
-    }),
-  });
-
-  readonly smartForm = new SmartForm<UserFormGroup>({
-    formGroup: this.formGroup,
-    inputConfig: {
-      name: {
-        label: 'Name',
-        type: 'text',
-      },
-      email: {
-        type: 'email',
-        label: 'Email',
-      },
-      password: {
-        type: 'password',
-        label: 'Password',
-      },
-      tags: {
-        type: 'text',
-      },
-      address: {
-        street: {
-          type: 'text',
-          label: 'Street',
-        },
-      },
-    },
-  });
-
-  constructor(private builder: FormBuilder) {
-    this.smartForm.formGroup.controls.tags.push(this.builder.control('a'));
-    this.smartForm.formGroup.controls.tags.push(this.builder.control('b'));
-
-    this.smartForm.formGroup.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
-  }
+  constructor(private builder: FormBuilder, engineService: EngineService) {}
 }
-
-export type UserFormGroup = FormGroup<{
-  name: FormControl<string | null>;
-  email: FormControl<string | null>;
-  password: FormControl<string | null>;
-  tags: FormArray<FormControl<string | null>>;
-  address: AddressFormGroup;
-}>;
-
-type AddressFormGroup = FormGroup<{
-  street: FormControl<string | null>;
-  city: FormControl<string | null>;
-  state: FormControl<string | null>;
-  zip: FormControl<string | null>;
-}>;

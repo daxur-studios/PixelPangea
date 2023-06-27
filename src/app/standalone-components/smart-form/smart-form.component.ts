@@ -1,6 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormInputType, InputConfig, SmartForm } from './smart-form';
+import {
+  FormInputType,
+  IInputOptions,
+  InputConfig,
+  SmartForm,
+} from './smart-form';
 import {
   FormArray,
   FormControl,
@@ -9,7 +14,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { UserFormGroup } from '../../app.component';
 
 @Component({
   selector: 'app-smart-form',
@@ -57,7 +61,7 @@ export class SmartFormComponent<T extends FormGroup = BaseFormGroup>
     return undefined;
   }
 
-  getType(key: keyof T['controls']) {
+  getType(key: any): IInputOptions | InputConfig<any> | undefined {
     return this.smartForm.options.inputConfig[key];
   }
 }

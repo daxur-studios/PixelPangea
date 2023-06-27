@@ -8,15 +8,19 @@ import { MainMenuPageComponent } from './pages/main-menu-page/main-menu-page.com
 import { LevelEditorPageComponent } from './pages/level-editor-page/level-editor-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { EngineModule, EngineComponent } from '@daxur-studios/engine';
 
 @NgModule({
-  declarations: [AppComponent, MainMenuPageComponent, LevelEditorPageComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     SmartFormComponent,
+    MainMenuPageComponent,
+    LevelEditorPageComponent,
+    EngineModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
