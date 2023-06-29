@@ -1,9 +1,11 @@
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   AbstractControl,
   FormControl,
   FormArray,
 } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 export class SmartForm<T extends FormGroup> implements ISmartForm {
   public readonly formGroup: T;
@@ -90,3 +92,24 @@ const smartForm = new SmartForm({
 });
 
 smartForm.formGroup.controls.tags.push(new FormControl('d'));
+
+@Component({
+  selector: 'base-smart-form-field',
+  template: ``,
+  styles: [],
+})
+export class SmartFormFieldComponent<CONTROL = FormControl>
+  implements OnInit, OnDestroy
+{
+  @Input() control!: CONTROL;
+
+  readonly unsubscribe: Subject<void> = new Subject();
+
+  constructor(public readonly smartForm: SmartForm<FormGroup>) {}
+
+  ngOnInit() {}
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+}
