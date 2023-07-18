@@ -1,9 +1,18 @@
-import { Component, OnInit, ViewChild, effect, signal } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  effect,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EngineComponent, EngineConfig } from '@daxur-studios/engine';
 import { SmartForm } from '@standalone-components/smart-form/smart-form';
 import { SmartFormComponent } from '@standalone-components/smart-form/smart-form.component';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+
 import {
   PerspectiveCamera,
   GridHelper,
@@ -22,12 +31,13 @@ import {
   },
   imports: [EngineComponent, SmartFormComponent],
 })
-export class MainMenuPageComponent implements OnInit {
+export class MainMenuPageComponent implements OnInit, OnDestroy {
   @ViewChild(EngineComponent, { static: true })
-  engineComponent!: EngineComponent;
+  engine?: EngineComponent;
+
+  private onDestroy$ = new Subject<void>();
 
   config: EngineConfig = new EngineConfig({
-    camera: new PerspectiveCamera(75, undefined, 0.1, 1000),
     webGLRendererParameters: {
       antialias: false,
       alpha: true,
@@ -98,17 +108,27 @@ export class MainMenuPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.engineComponent.scene.add(new GridHelper(20, 20, 0x0000ff, 0x808080));
+    this.engine = this.engine!;
+
+    this.engine.switchCamera(new PerspectiveCamera(75, undefined, 0.1, 1000));
+
+    this.engine.scene.add(new GridHelper(20, 20, 0x0000ff, 0x808080));
     const b = new GridHelper(20, 20, 0x00ff00, 0x808080);
 
-    this.engineComponent.scene.add(b);
+    this.engine.scene.add(b);
 
     b.rotateOnAxis(new Vector3(1, 0, 0), Math.PI / 2);
 
-    this.engineComponent.renderer?.render(
-      this.engineComponent.scene,
-      this.engineComponent.config.camera$.value
-    );
+    this.engine.tick$.pipe(takeUntil(this.onDestroy$)).subscribe((tick) => {
+      b.rotateX(0.01);
+      b.rotateY(0.01);
+      b.rotateZ(0.01);
+    });
+  }
+
+  ngOnDestroy() {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
 export type UserFormGroup = FormGroup<{

@@ -1,1 +1,9 @@
-<daxur-level-editor [config]="config"></daxur-level-editor>
+<daxur-level-editor
+  [config]="config"
+  (ready)="onEditorReady($event)"
+></daxur-level-editor>
+
+<div #domPortalContent>
+  Hello, this is a DOM portal
+  <button (click)="togglePixelShader()">Pixelate</button>
+</div>

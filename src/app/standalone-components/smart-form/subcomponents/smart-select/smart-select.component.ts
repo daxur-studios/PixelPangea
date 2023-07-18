@@ -7,8 +7,6 @@ import { SmartFormFieldComponent } from '@standalone-components/smart-form/smart
   standalone: true,
   imports: [CommonModule],
   templateUrl: './smart-select.component.html',
-  styleUrls: ['./smart-select.component.scss']
+  styleUrls: ['./smart-select.component.scss'],
 })
-export class SmartSelectComponent extends SmartFormFieldComponent{
-
-}
+export class SmartSelectComponent extends SmartFormFieldComponent {}

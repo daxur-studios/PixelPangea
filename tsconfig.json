@@ -6,7 +6,15 @@
       "@angular/*": ["./node_modules/@angular/*"],
       "three": ["./node_modules/three"],
       "@daxur-studios/engine": ["./node_modules/@daxur-studios/engine"],
-      "@standalone-components/*": ["src/app/standalone-components/*"]
+
+      "@standalone-components/*": ["src/app/standalone-components/*"],
+      "@standalone-components": ["src/app/standalone-components"],
+      "@models/*": ["src/app/models/*"],
+      "@models": ["src/app/models"],
+      "@services/*": ["src/app/services/*"],
+      "@services": ["src/app/services"],
+      "@core/*": ["src/app/core/*"],
+      "@core": ["src/app/core"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
